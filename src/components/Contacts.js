@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import contactsJson from  '../contacts.json';
 import ContactList from './ContactList'
+import 'bulma/css/bulma.css';
+
 
 class Contacts extends Component {
 
@@ -80,35 +82,51 @@ class Contacts extends Component {
         })
     }
 
-
     render() {
         return (
             <>
-                <h1>Contacts</h1>
-                <div>
+                <div className="mb-2 container ">
                     <span>
-                        <button onClick={this.handleAddRandom}>Add Random Contact</button>
+                        <button className="m-1 button is-primary is-small" onClick={this.handleAddRandom}>Add Random Contact</button>
                     </span>
                     <span>
-                        <button onClick={this.handleSortName}>Sort by name</button>
+                        <button className="m-1 button is-info is-small" onClick={this.handleSortName}>Sort by name</button>
                     </span>
                     <span>
-                        <button onClick={this.handleSortPop}>Sort by popularity</button>
+                        <button className="m-1 button is-info is-small" onClick={this.handleSortPop}>Sort by popularity</button>
                     </span>
+
+
+                    
                 </div>
-                {
-                    this.state.contacts.map((singleContact, index) => {
-                        return <ContactList
-                            key={index}
-                            picture={singleContact.pictureUrl}
-                            name={singleContact.name}
-                            popular={singleContact.popularity}
-                            // dont forget for the deletion
-                            id={singleContact.id}
-                            pressDelete={this.handleDelete}                            
-                        />                      
-                    })   
-                }
+
+                <div className="mb-2 container ">
+                    <table className="table auto" border = "1">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Salary</th>
+                                <th>Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.state.contacts.map((singleContact, index) => {
+                                    return <ContactList
+                                        key={index}
+                                        picture={singleContact.pictureUrl}
+                                        name={singleContact.name}
+                                        popular={singleContact.popularity}
+                                        // dont forget for the deletion
+                                        id={singleContact.id}
+                                        pressDelete={this.handleDelete}                            
+                                    />                      
+                                })   
+                            }                            
+                        </tbody>
+                    </table>
+                </div>
             </>
         )
     }
